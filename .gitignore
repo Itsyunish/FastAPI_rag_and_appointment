@@ -1,0 +1,17 @@
+# Virtual environment
+myenv/
+
+# Environment variables
+.env
+
+# virtual environment
+venv/
+
+# Python cache(python compiled files)
+__pycache__/
+*.pyc
+
+
+# file that are uploaded in frontend
+uploads/
+
