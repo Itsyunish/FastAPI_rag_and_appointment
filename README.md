@@ -7,7 +7,7 @@ This project is a **Retrieval-Augmented Generation (RAG) API** built with FastAP
 ## Features
 
 - Upload and process PDF/TXT files.
-- Split documents using **RecursiveCharacter** or **Markdown** chunking.
+- Split documents using **RecursiveCharacter** or **Character** chunking.
 - Generate embeddings with **HuggingFace sentence transformers**.
 - Store vectors in **Pinecone** for semantic search.
 - Retrieve answers using **ChatGoogleGenerativeAI**.
