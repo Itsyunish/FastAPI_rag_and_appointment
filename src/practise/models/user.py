@@ -4,7 +4,7 @@ from datetime import datetime
 
 class UserInfo(BaseModel):
     name: Annotated[str, Field(max_length=50)]
-    email: Annotated[EmailStr, Field()]
+    email: Annotated[EmailStr, Field(...)]
     appointment_date: str
     appointment_time: str
 
