@@ -1,0 +1,40 @@
+[project]
+name = "practise"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Yunish Subedi", email = "itsbusiness186@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "datetime>=5.5",
+    "dotenv>=0.9.9",
+    "email-validator>=2.3.0",
+    "fastapi>=0.116.1",
+    "huggingface-hub>=0.34.4",
+    "langchain>=0.3.27",
+    "langchain-community>=0.3.28",
+    "langchain-google-genai>=2.1.10",
+    "langchain-huggingface>=0.3.1",
+    "langchain-pinecone>=0.2.11",
+    "langchain-text-splitters>=0.3.9",
+    "mailtrap>=2.1.0",
+    "pinecone>=7.3.0",
+    "pymongo>=4.14.1",
+    "pypdf>=6.0.0",
+    "pytest>=8.4.1",
+    "python-dotenv>=1.1.1",
+    "python-multipart>=0.0.20",
+    "redis>=6.4.0",
+    "requests>=2.32.5",
+    "sentence-transformers>=5.1.0",
+    "uvicorn>=0.35.0",
+]
+
+[project.scripts]
+practise = "practise:main"
+
+[build-system]
+requires = ["uv_build>=0.8.13,<0.9.0"]
+build-backend = "uv_build"
