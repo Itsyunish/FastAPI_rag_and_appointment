@@ -37,3 +37,7 @@ async def query_rag(request: Request, q: str):
 
     result = rag_chain.invoke({"input": q})
     return {"query": q, "answer": result.get("answer") or result.get("output_text")}
+
+
+
+
