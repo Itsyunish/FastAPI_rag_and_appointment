@@ -14,10 +14,4 @@ class Settings(BaseSettings):
     )
 
 settings = Settings()
-# GOOGLE_API_KEY=settings.google_api_key.get_secret_value()
-# MAILTRAP_API_KEY = settings.mailtrap_api_key.get_secret_value()
-# PINECONE_API_KEY = settings.pinecone_api_key.get_secret_value()
-# INDEX_HOST = settings.index_host.get_secret_value()
-
-
 UPLOAD_DIR = os.path.join(os.getcwd(), "uploads")
