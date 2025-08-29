@@ -25,6 +25,7 @@ async def conversation_query(request: Request, session_id: str = Query(...), q: 
     return {"session_id": session_id, "query": q, "answer": answer, "history": conversation_history}
 
 
+
 @router.get("/query/")
 async def query_rag(request: Request, q: str):
     if not q.strip():

@@ -1,5 +1,5 @@
 import mailtrap as mt
-from practise.config import MAILTRAP_API_KEY
+from practise.config import settings
 
 def send_appointment_email(to_email: str, to_name: str, date: str, time: str):
     mail = mt.Mail(
@@ -9,5 +9,5 @@ def send_appointment_email(to_email: str, to_name: str, date: str, time: str):
         text=f"Hello {to_name},\nYour appointment is scheduled on {date} at {time}.\nThank you!",
         category="Appointment Notification",
     )
-    client = mt.MailtrapClient(token=MAILTRAP_API_KEY)
+    client = mt.MailtrapClient(token=settings.mailtrap_api_key.get_secret_value())
     return client.send(mail)

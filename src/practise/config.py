@@ -1,9 +1,23 @@
 import os
-from dotenv import load_dotenv
+from pydantic import SecretStr
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
-load_dotenv()
+class Settings(BaseSettings):
+    google_api_key: SecretStr
+    pinecone_api_key: SecretStr
+    mailtrap_api_key: SecretStr
+    index_host: SecretStr
 
-MAILTRAP_API_KEY = os.getenv("MAILTRAP_API_KEY")
-PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+    )
+
+settings = Settings()
+# GOOGLE_API_KEY=settings.google_api_key.get_secret_value()
+# MAILTRAP_API_KEY = settings.mailtrap_api_key.get_secret_value()
+# PINECONE_API_KEY = settings.pinecone_api_key.get_secret_value()
+# INDEX_HOST = settings.index_host.get_secret_value()
+
+
 UPLOAD_DIR = os.path.join(os.getcwd(), "uploads")
