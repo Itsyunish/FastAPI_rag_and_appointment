@@ -10,7 +10,6 @@ from pathlib import Path
 from langchain_core.runnables import Runnable, RunnableMap
 from dotenv import load_dotenv
 from langchain_core.output_parsers import StrOutputParser
-from practise.config import PINECONE_API_KEY, INDEX_HOST
 import os
 from pinecone import Pinecone
 
