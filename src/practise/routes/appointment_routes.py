@@ -22,7 +22,7 @@ def schedule_appointment(info: UserInfo):
             "success": response["success"],
             "mailtrap_message_id": response["message_ids"][0]
         }
-
+    
         # Save to MongoDB
         appointment_collection.insert_one(metadata)
 
@@ -34,7 +34,7 @@ def schedule_appointment(info: UserInfo):
                     "appointment_date": info.appointment_date,
                     "appointment_time": info.appointment_time
             },
-                "mailtrap_status": response
+                # "mailtrap_status": response
         })
 
     except Exception as e:
