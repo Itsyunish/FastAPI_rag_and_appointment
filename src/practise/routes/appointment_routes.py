@@ -16,12 +16,12 @@ def schedule_appointment(info: UserInfo):
             "appointment_time": info.appointment_time
         }
 
-        # Send email   # email sendng has reached its limit
-        # response = send_appointment_email(info.email, info.name, info.appointment_date, info.appointment_time)
-        # metadata["mailtrap"] = {
-        #     "success": response["success"],
-        #     "mailtrap_message_id": response["message_ids"][0]
-        # }
+        # email sendng has reached its limit
+        response = send_appointment_email(info.email, info.name, info.appointment_date, info.appointment_time)
+        metadata["mailtrap"] = {
+            "success": response["success"],
+            "mailtrap_message_id": response["message_ids"][0]
+        }
 
         # Save to MongoDB
         appointment_collection.insert_one(metadata)
@@ -34,7 +34,7 @@ def schedule_appointment(info: UserInfo):
                     "appointment_date": info.appointment_date,
                     "appointment_time": info.appointment_time
             },
-                # "mailtrap_status": response
+                "mailtrap_status": response
         })
 
     except Exception as e:

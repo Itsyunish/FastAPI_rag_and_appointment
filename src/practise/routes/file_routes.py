@@ -8,6 +8,7 @@ from practise.llm.gemini_llm import get_llm
 from practise.config import settings
 from pathlib import Path
 from practise.utils.file_utils import format_size_mb
+from practise.db.redis_client import get_conversation, save_conversation
 import uuid
 from langchain_core.runnables import Runnable, RunnableMap
 from dotenv import load_dotenv
@@ -111,6 +112,17 @@ async def upload_file(
 async def query(query:str =  Query(...,description="ask the question for user query"),
                 user_id:int = Query(...,description="enter the same user id as while uploading file")):
     
+    
+    if not query.strip():
+        raise HTTPException("Query cannot be empty")
+    
+    conversation_history = get_conversation(user_id)
+    
+    conversation_history.append({"role": "user", "content": query})
+    
+    conversation_text = "\n".join([f"{m['role']}: {m['content']}" for m in conversation_history])
+    
+    
     pc = Pinecone(api_key=settings.pinecone_api_key.get_secret_value())
     
     user_match = metadata_collection.find_one({"user_id": user_id})
@@ -162,13 +174,18 @@ async def query(query:str =  Query(...,description="ask the question for user qu
         
         chain: Runnable = RunnableMap({
         "query": lambda x: x['query'],
-        "context": lambda x: context_text,  
-         }) | prompt | llm | StrOutputParser()
+        "context": lambda x: x['context'],  # use input context
+       }) | prompt | llm | StrOutputParser()
+        
+        full_context = f"Conversation History:/n {conversation_text} + \n\n + Context:\n {context_text}"
 
-        answer = await chain.ainvoke({'query': query})
+    answer = await chain.ainvoke({'query': query, "context": full_context})
 
+    conversation_history.append({"role": "assistant", "content": answer})
+    save_conversation(user_id, conversation_history)
 
-        return {"query": query, "answer": answer}
+    return {"query": query, "answer": answer}
+
     
    
    
