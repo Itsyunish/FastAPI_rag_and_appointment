@@ -8,7 +8,7 @@ This project is a **Retrieval-Augmented Generation (RAG) API** built with FastAP
 
 - Upload and process PDF/TXT files.
 - Split documents using **RecursiveCharacter** or **Character** chunking.
-- Generate embeddings with **HuggingFace sentence transformers**.
+- Generate embeddings with **Pinecone embedding model*.
 - Store vectors in **Pinecone** for semantic search.
 - Retrieve answers using **ChatGoogleGenerativeAI**.
 - Store conversation history in **Redis**.
