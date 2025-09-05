@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 
-client = MongoClient("mongodb://localhost:27017/")
+client = MongoClient("")
 
 # Collections
 metadata_collection = client["test_db"]["user"]
